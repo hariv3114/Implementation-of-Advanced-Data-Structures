@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Stack;
 
 class Graph implements Iterable<Vertex> {
 	public List<Vertex> verts; // array of vertices
-	public int numNodes; // number of verices in the graph
-	public int no_of_edges = 0; // We want this for the Kahns algorithm to determine cycles in DAG
+	public int numNodes; // number of vertices in the graph
+	public int no_of_edges = 0; // We want this for the Kahn's algorithm to determine cycles in DAG
 
 	/**
 	 * Constructor for Graph
@@ -36,8 +37,7 @@ class Graph implements Iterable<Vertex> {
 		
 		Scanner inputScanner = new Scanner(System.in);
 		
-		List<Vertex> topListResult =  List_Implementation.topologicalOrder1(readGraph(inputScanner,true));
-		
+/*		List<Vertex> topListResult =  List_Implementation.topologicalOrder1(readGraph(inputScanner,true));
 		if(topListResult != null){
 			System.out.println("The Vertices in topological order are : ");
 			for (Vertex vertex : topListResult) {
@@ -45,8 +45,15 @@ class Graph implements Iterable<Vertex> {
 			}
 		} else{
 			System.out.println("It is not a DAG");
-		}
+		}*/
 		
+		
+		DFSImplementation dfsIMP = new DFSImplementation();
+		Stack<DFSVertex> topologicalOrderVertices = dfsIMP.topologicalByDfs(readGraph(inputScanner,false));
+		
+		for (DFSVertex dfsVertex : topologicalOrderVertices) {
+			System.out.print(dfsVertex.getName()+", ");
+		}
 	}
 	
 	
