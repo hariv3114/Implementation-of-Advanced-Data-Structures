@@ -42,6 +42,7 @@ public class TimeConversion {
 	        Scanner in = new Scanner(System.in);
 	        String time = in.next();
 	        
+	        // Set format for input and output
 	        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ssa");
 	        SimpleDateFormat out = new  SimpleDateFormat("HH:mm:ss");
 	        
