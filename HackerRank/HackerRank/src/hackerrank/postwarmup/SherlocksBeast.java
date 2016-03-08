@@ -1,5 +1,7 @@
 package hackerrank.postwarmup;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -72,22 +74,45 @@ public class SherlocksBeast {
 		int t = in.nextInt();
 		for (int a0 = 0; a0 < t; a0++) {
 			int n = in.nextInt();
-			System.out.println(sBeast.decentNumber(n));
+			sBeast.printDecentNumber(n);
+			
 		}
 	}
 
 	/**
+	 * Takes in the N value and calls the internal method decentNumber to generate the 
+	 * same and prints out the number that is returned as the list
+	 * @param n
+	 */
+	public void printDecentNumber(int n){
+		
+		List<String> decentNumberList = new ArrayList<String>();
+		
+		decentNumberList = decentNumber(n);
+		
+		// printout the values
+		for (String string : decentNumberList) {
+			System.out.print(string);
+		}
+		System.out.println(" ");
+	}
+	
+	
+	/**
 	   * This method takes in N and returns the above mentioned 'Decent Number' which is 
-	   * n digits long
+	   * n digits long as an ArrayList
 	   * 
 	   * @param n
 	   * @return Decent Number of length n.
 	   */
 	  
-	  public long decentNumber(int n){
+	  public List<String> decentNumber(int n){
+		  
+		  List<String> decNumList = new ArrayList<String>();
+		  
 		  long decNum = -1;
-		  int num5 = 5;
-		  int num3 = 3;
+		  String num5 = "5";
+		  String num3 = "3";
 		  int max = -1;
 		  
 		  // Modulo values of n
@@ -97,7 +122,8 @@ public class SherlocksBeast {
 
 		  if(n < 3) // If less than 3 return -1
 		  {
-			  return decNum;
+			  decNumList.add("-1");
+			  return decNumList;
 		  }
 		  else{
 			  n_mod_3 = n % 3;
@@ -107,44 +133,40 @@ public class SherlocksBeast {
 		// if true we can fill entirely with 5's coz u have a multiple of 3 and that would be the largest number (Greedy)
 		  if(n_mod_3 == 0) 
 		  {
-			  decNum = createNumWithDigits(n,num5);
+			  decNumList = createNumWithDigits(n,num5);
 		  }
 		  else {
 			  
 			  if(n_mod_5 == 0) // Divisible by 5 , so we can fill entirely with 3's
 			  {
-				  decNum = createNumWithDigits(n, num3);
+				  decNumList = createNumWithDigits(n, num3);
 			  }
 			  else if ((n_mod_5 % 3) == 0){ // a multiple of combination of 5+3 digits
-				  decNum = concatNumbers(createNumWithDigits(n/3, num5), createNumWithDigits(n_mod_5, num3));
+				  decNumList = concatNumbers(createNumWithDigits(n/3, num5), createNumWithDigits(n_mod_5, num3));
 			  }
 			  
 			  else{
-				  decNum = buildDecentNumber(n);
+				  decNumList = buildDecentNumber(n);
 			  }
 		  }
 		  
 		  
-		  return decNum;
+		  return decNumList;
 	  }
 
 	/**
-	 * Takes in the length of a number to be made of given digits only.
+	 * Takes in the length of a number to be made of given digits only and returns a List.
 	 * 
 	 * @param numLength
 	 * @param digit
 	 * @return Number made with digit of length numLength
 	 */
-	public int createNumWithDigits(int numLength, int digit) {
+	public List<String> createNumWithDigits(int numLength, String digit) {
 
-		int numOfDigits = -1;
-		StringBuilder digitAsString = new StringBuilder();
-
+		List<String> numOfDigits = new ArrayList<String>();
 		for (int i = 1; i <= numLength; i++) {
-			digitAsString.append(digit);
+			numOfDigits.add(digit);
 		}
-
-		numOfDigits = Integer.parseInt(digitAsString.toString());
 		return numOfDigits;
 	}
 
@@ -157,12 +179,12 @@ public class SherlocksBeast {
 	 * @param num_b
 	 * @return num_anum_b
 	 */
-	public long concatNumbers(int num_a, int num_b) {
-		long conCatNums = -1;
-
-		conCatNums = Integer.parseInt(Integer.toString(num_a).concat(Integer.toString(num_b)));
-
-		return conCatNums;
+	public List<String> concatNumbers(List<String> num_a, List<String> num_b) {
+		/*List<String> conCatNums = new ArrayList<String>();
+		conCatNums.addAll(num_a);
+		conCatNums.addAll(num_a);*/
+		num_a.addAll(num_b);
+		return num_a;
 	}
 	
 	/**
@@ -174,8 +196,8 @@ public class SherlocksBeast {
 	 * @param n
 	 * @return
 	 */
-	public long buildDecentNumber(int n) {
-		long numBuilt = 0;
+	public List<String> buildDecentNumber(int n) {
+		List<String> numBuilt =  new ArrayList<String>();
 		int index_3 = 0;
 		int index_5 = 0;
 
@@ -188,7 +210,7 @@ public class SherlocksBeast {
 			index_3++;
 		}
 		
-		numBuilt = concatNumbers(createNumWithDigits(index_5*5, 5), createNumWithDigits(index_3*3, 3));
+		numBuilt = concatNumbers(createNumWithDigits(index_3*3, "5"),createNumWithDigits(index_5*5, "3"));
 		
 		return numBuilt;
 	}
