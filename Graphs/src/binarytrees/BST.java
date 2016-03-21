@@ -1,6 +1,7 @@
 package binarytrees;
 
-/** @original_author rbk
+/**
+ *  @original_author rbk
  *  Binary search tree (nonrecursive version)
  *  Ver 1.1: Bug fixed - parent of child updated after removeOne
  *  
@@ -12,11 +13,10 @@ package binarytrees;
 import java.util.*;
 
 public class BST<T extends Comparable<? super T>> {
-    class Entry<T> {
-        T element;
-        Entry<T> left, right, parent;
-
-        Entry(T x, Entry<T> l, Entry<T> r, Entry<T> p) {
+    class Entry<E> {
+        E element;
+        Entry<E> left, right, parent;
+        Entry(E x, Entry<E> l, Entry<E> r, Entry<E> p) {
             element = x;
 	    left = l;
 	    right = r;
@@ -48,6 +48,7 @@ public class BST<T extends Comparable<? super T>> {
 	}
 	return pre;
     }
+    
 
     // Is x contained in tree?
     public boolean contains(T x) {
@@ -202,6 +203,8 @@ public class BST<T extends Comparable<? super T>> {
 	}
     }
 }
+
+
 /*
 Sample input:
 1 3 5 7 9 2 4 6 8 10 -3 -6 -3 0
