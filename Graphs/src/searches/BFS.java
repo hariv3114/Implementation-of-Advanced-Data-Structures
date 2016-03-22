@@ -25,6 +25,7 @@ public class BFS {
 	 * Search on the same
 	 * 
 	 * @param inputGraph
+	 * @return void : Prints the Vertices in the order of the Breadth First Search
 	 */
 	public void runBFS(Graph inputGraph) {
 
