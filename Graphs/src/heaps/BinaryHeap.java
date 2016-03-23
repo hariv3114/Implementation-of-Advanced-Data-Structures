@@ -64,7 +64,7 @@ public class BinaryHeap<T> implements PQ<T> {
 
 	/** pq[i] may violate heap order with children */
 	void percolateDown(int i) { /* to be implemented */
-	}
+	} 
 
 	/** Create a heap. Precondition: none. */
 	void buildHeap() {
