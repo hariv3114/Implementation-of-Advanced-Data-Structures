@@ -20,7 +20,7 @@ import java.util.Scanner;
  * 
  * Output Format
  * 
- * For each test case, print the height of the Utopian Tree after NN cycles.
+ * For each test case, print the height of the Utopian Tree after N cycles.
  * Each height must be printed on a new line.
  * 
  * Sample Input
