@@ -29,9 +29,8 @@ public class ReverseLL {
 		next_3.next = next_4;
 		next_4.next = null;
 
-		Node revHead = reverse(head);
-
-		System.out.println("head : "+revHead.data);
+		thisClass.print(head);
+		thisClass.print(reverse(head));
 		
 	}
 
@@ -91,5 +90,26 @@ public class ReverseLL {
 		next.next = curr;
 
 		return next;
+	}
+	
+	/**
+	 *  Print all the nodes of a Linked List 
+	 * 
+	 * @param head
+	 * 
+	 */
+	
+	void print(Node head){
+
+		Node node = head;
+
+		while(node.next != null){
+			System.out.print(node.data+", ");
+			node = node.next;
+		}
+
+		System.out.print(node.data);
+		System.out.println();
+
 	}
 }
