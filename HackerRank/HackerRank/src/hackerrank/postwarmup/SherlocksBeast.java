@@ -68,12 +68,12 @@ import java.util.Scanner;
 public class SherlocksBeast {
 
 	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
+		Scanner input = new Scanner(System.in);
 		
 		SherlocksBeast sBeast = new SherlocksBeast();
-		int t = in.nextInt();
+		int t = input.nextInt();
 		for (int a0 = 0; a0 < t; a0++) {
-			int n = in.nextInt();
+			int n = input.nextInt();
 			sBeast.printDecentNumber(n);
 			
 		}
